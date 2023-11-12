@@ -23,13 +23,13 @@ int	ft_strlen(char const *s)
 	return (index);
 }
 
-char	*create_word(int start, int end, char const *word)
+char	*create_word(int start, int end, char const *word, char c)
 {
 	char	*to_ret;
 	int	index;
 
 	index = 0;
-	to_ret = (char *)malloc(sizeof(char) * ft_strlen(word));
+	to_ret = (char *)malloc(sizeof(char) * (end - start) + 1);
 	if (!(to_ret))
 	{
 		to_ret = NULL;
@@ -37,8 +37,11 @@ char	*create_word(int start, int end, char const *word)
 	}
 	while (start-- < end)
 	{
-		to_ret[index] = word[end - start];
-		index++;
+  if ((word[end - start] != c)
+   {
+		  to_ret[index] = word[end - start];
+	  	index++;
+   }
 	}
 	to_ret[index] = '\0';
 	return (to_ret);
@@ -67,7 +70,7 @@ char	**ft_split(char const *s, char c)
 		if (s[index] == c)
 		{
 			end = index - 1;
-			tab[k++] = create_word((start, index - 1, s);
+			tab[k++] = create_word((start, end, s);
 			start = end;
 		}
 		index++;
