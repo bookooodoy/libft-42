@@ -17,12 +17,15 @@ int	count_digit_length(int n)
 	int	length;
 
 	length = 0;
-	while (n /=10)
+	while (n)
+	{
+		n /= 10;
 		length++;
+	}
 	return (length);
 }
 
-size_t  ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	int	index;
 
@@ -32,50 +35,58 @@ size_t  ft_strlen(const char *s)
 	return (index);
 }
 
-char	*reverse_char(char *s, int size)
+char	*reverse_char(char *s, int size, int sign)
 {
 	char	*reversed;
-	int	end;
-	int	index;
+	int		end;
+	int		index;
+	int		k;
 
+	k = 0;
 	index = 0;
-	end = ft_strlen((const char *)s);
-	reversed = (char *)malloc(sizeof(char) * size);
-	while (s[index])
+	end = ft_strlen((const char *)s) - 2;
+	reversed = (char *)malloc(sizeof(char) * size + 2);
+	if (!(reversed))
 	{
-		reversed[index] = s[end - index];
-		index++;
+		reversed = NULL;
+		return (NULL);
 	}
+	if (sign)
+		reversed[k++] = '-';
+	while (index < size)
+	{
+		reversed[k] = s[end - index];
+		index++;
+		k++;
+	}
+	reversed[index] = '\0';
 	return (reversed);
 }
 
 char	*ft_itoa(int n)
 {
-	int	dlen;
 	char	*itoa;
 	char	*start_num;
-	int	d;
+	int		d;
+	int		sign;
+	int		dlen;
 
-	d = 0;
 	dlen = count_digit_length(n);
+	sign = 0;
+	d = 0;
 	start_num = (char *)malloc(sizeof(char) * dlen);
 	if (!(start_num))
+		return (NULL);
+	if (n < 0 && n != 0)
 	{
-		start_num = NULL;
-		return (start_num);
+		n *= -1;
+		sign = 1;
 	}
-	while (dlen--)
+	while (dlen-- >= 0)
 	{
 		start_num[d++] = (n % 10) + '0';
 		n /= 10;
 	}
-	itoa = reverse_char(start_num, d);
+	itoa = reverse_char(start_num, d, sign);
 	return (itoa);
-}
-
-int	main(void)
-{
-	char *itoa = ft_itoa(100);
-	printf("%s", itoa);
-	return 0;
 }

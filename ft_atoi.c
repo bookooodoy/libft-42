@@ -19,19 +19,19 @@ int	ft_isspace(char c)
 	return (0);
 }
 
-
 int	ft_isdigit(int c)
 {
-	if (c <= 48 && c >= 57)
+	if (c >= 48 && c <= 57)
 		return (1);
 	return (0);
 }
+
 int	atoi(const char *nptr)
 {
-	int	index;
+	int		index;
 	char	*test;
-	int	sign;
-	int	to_ret;
+	int		sign;
+	int		to_ret;
 
 	to_ret = 0;
 	sign = 1;
@@ -47,7 +47,7 @@ int	atoi(const char *nptr)
 	{
 		to_ret = (10 * to_ret) + (test[index] - '0');
 		if (!(ft_isdigit(test[index + 1])))
-			break;
+			break ;
 	}
 	return (to_ret * sign);
 }

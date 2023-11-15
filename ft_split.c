@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int    ft_strlen(char const *s)
+size_t    ft_strlen(char const *s)
 {
     int    index;
 
@@ -22,7 +22,7 @@ int    ft_strlen(char const *s)
     return (index);
 }
 
-void    free_tab(char **tab)
+static void    free_tab(char **tab)
 {
     int    i;
 
@@ -55,6 +55,18 @@ char    *create_word(int start, int end, char const *word, char c)
     return (to_ret);
 }
 
+int count_words(char const *s, char c)
+{
+    int index;
+    int words;
+
+    index = 0;
+    while (s[index])
+    {
+        while (!(is_trimset(s[index], c)))
+            index++;
+    }
+}
 
 char    **ft_split(char const *s, char c)
 {
@@ -89,7 +101,7 @@ char    **ft_split(char const *s, char c)
         }
         index++;
     }
-    tab[k] = NULL;
+    tab[k] = '\0';
     return (tab);
 }
 
@@ -98,7 +110,8 @@ int    main(void)
     char const *test = "ceci est un test ";
     char **new;
     new = ft_split(test, ' ');
-    for (int i = 0; i<4; i++)
+    printf("%li\n", sizeof(new));
+    for (long unsigned int i = 0; i<4; i++)
         printf("%s\n", new[i]);
     return 0;
 }

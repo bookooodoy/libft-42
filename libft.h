@@ -6,7 +6,7 @@
 /*   By: nraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:47:55 by nraymond          #+#    #+#             */
-/*   Updated: 2023/11/15 15:24:48 by nraymond         ###   ########.fr       */
+/*   Updated: 2023/11/15 18:53:33 by nraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_isprint(int c);
 size_t	ft_strlen(const char *s);
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
-void	*ft_memcpy(void *dest, const void *src, int n);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 void    *ft_memmove(void *dest, const void *src, size_t n);
 int	ft_strlcpy(char *dst, const char *src, int size);
 int	ft_toupper(int c);
@@ -43,7 +43,7 @@ void	*ft_memchr(const void *s, int c, int n);
 int 	ft_memcmp(const void *s1, const void *s2, int n);
 char	*ft_strnstr(const char *big, const char *little, int len);
 int	atoi(const char *nptr);
-void 	*ft_calloc(int nmemb, int size);
+void 	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);

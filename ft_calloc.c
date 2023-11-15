@@ -12,45 +12,64 @@
 
 #include "libft.h"
 
-char	*fill_zeroes(char *to_fill, int	size)
+static char	*fill_zeroes(char *s, size_t n)
+{
+	size_t			index;
+
+	index = 0;
+	while (index < n)
+		s[index++] = '\0';
+	return (s);
+}
+
+static void	free_tab(char **tab)
 {
 	int	index;
 
 	index = 0;
-	while (index < size)
-		to_fill[index++] = '\0';
-	return (to_fill);
+	while (tab[index])
+	{
+		free(tab[index]);
+		index++;
+	}
+	free(tab);
 }
 
-void 	*ft_calloc(int nmemb, int size)
+static void	*sub_calloc(size_t nmemb, size_t size)
 {
 	char	*proutax;
 	char	**calloced;
-	int	index;
+	size_t	index;
 
-	index = 0;
-	if ((nmemb == 0) || (size == 0))
-	{
-		calloced = NULL;
-		return (calloced);
-	}
 	calloced = (char **)malloc(size * nmemb);
 	if (!(calloced))
 	{
-		calloced = NULL;
-		return (calloced);
+		free_tab(calloced);
+		return ((void *) NULL);
 	}
 	while (index < nmemb)
 	{
 		proutax = (char *)malloc(sizeof(char) * size);
 		if (!(proutax))
 		{
-			proutax = NULL;
-			return ((void *)proutax);
+			free_tab(calloced);
+			return ((void *) NULL);
 		}
-		calloced[index++] = fill_zeroes(proutax, size);
+		calloced[index++] = fill_zeroes(proutax, (size_t)size);
 	}
 	return ((void *)calloced);
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	char	**test;
+
+	if ((nmemb == 0) || (size == 0))
+		return (malloc(0));
+	if ((nmemb * size) / size != nmemb)
+		return (NULL);
+	test = sub_calloc(nmemb, size);
+	return (test);
 }
 
 /*int	main(void)
