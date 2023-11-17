@@ -33,7 +33,7 @@ int	ft_atoi(const char *nptr)
 	while (ft_isspace(test[index]))
 		index++;
 	if (test[index] == '-' || test[index] == '+')
-	{ 
+	{
 		if (test[index] == '-')
 			sign *= -1;
 		index++;
@@ -47,11 +47,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (to_ret * sign);
 }
-
-/*
-int	main(void)
-{
-	const char *nptr = "-4886";
-	printf("%d", ft_atoi(nptr));
-	return 0;
-}*/

@@ -6,7 +6,7 @@
 /*   By: nraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:55:50 by nraymond          #+#    #+#             */
-/*   Updated: 2023/11/15 15:27:03 by nraymond         ###   ########.fr       */
+/*   Updated: 2023/11/17 16:16:44 by nraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,66 +14,47 @@
 
 static int	count_digit_length(int n)
 {
-	int	length;
+	size_t	length;
+	size_t	popo;
 
-	length = 0;
-	while (n)
+	length = 1;
+	popo = (size_t)n;
+	if (n < 0)
 	{
-		n /= 10;
 		length++;
+		popo = (size_t)n * -1;
+	}
+	while (popo >= 10)
+	{
+		length++;
+		popo /= 10;
 	}
 	return (length);
 }
 
-static char	*reverse_char(char *s, int size, int sign)
-{
-	char	*reversed;
-	int		end;
-	int		index;
-	int		k;
-
-	k = 0;
-	index = 0;
-	end = ft_strlen((const char *)s) - 2;
-	reversed = (char *)malloc(sizeof(char) * size + 2);
-	if (!(reversed))
-		return (NULL);
-	if (sign)
-		reversed[k++] = '-';
-	while (index < size)
-	{
-		reversed[k] = s[end - index];
-		index++;
-		k++;
-	}
-	reversed[index] = '\0';
-	return (reversed);
-}
-
 char	*ft_itoa(int n)
 {
-	char	*itoa;
-	char	*start_num;
+	char	*crazy;
 	int		d;
-	int		sign;
-	int		dlen;
+	size_t	popo;
 
-	dlen = count_digit_length(n);
-	sign = 0;
-	d = 0;
-	start_num = (char *)malloc(sizeof(char) * dlen);
-	if (!(start_num))
+	d = count_digit_length(n);
+	crazy = (char *)malloc(sizeof(char) * (d + 1));
+	if (!crazy)
 		return (NULL);
-	if (n < 0 && n != 0)
+	if (n == 0)
+		crazy[0] = '0';
+	popo = (size_t)n;
+	if (n < 0)
 	{
-		n *= -1;
-		sign = 1;
+		crazy[0] = '-';
+		popo = (size_t)n * -1;
 	}
-	while (dlen-- >= 0)
+	crazy[d--] = '\0';
+	while (popo != 0)
 	{
-		start_num[d++] = (n % 10) + '0';
-		n /= 10;
+		crazy[d--] = (popo % 10) + '0';
+		popo /= 10;
 	}
-	itoa = reverse_char(start_num, d, sign);
-	return (itoa);
+	return (crazy);
 }

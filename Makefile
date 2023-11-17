@@ -2,18 +2,19 @@ NAME:= libft.a
 
 SRCS:= $(wildcard *.c)
 
+INCL:= libft.h
+
 OBJ=$(SRCS:.c=.o)
 
 #SRCS_B := ...
 
 CC=cc
 
-
 CFLAGS=-Werror -Wextra -Wall -I .
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(INCL)
 	ar -rcs $(NAME) $(OBJ)
 
 %.o: %.c

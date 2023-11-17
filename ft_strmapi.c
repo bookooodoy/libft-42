@@ -12,7 +12,6 @@
 
 #include "libft.h"
 
-
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char	*ret;
@@ -21,21 +20,12 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	index = 0;
 	ret = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
 	if (!(ret))
-	{
-		ret = NULL;
-		return (ret);
-	}
+		return (NULL);
 	while (index < ft_strlen(s))
 	{
 		ret[index] = (*f)(index, s[index]);
 		index++;
 	}
+	ret[index] = '\0';
 	return (ret);
 }
-
-/*int	main(void)
-{
-	char const *test = "fils de pute";
-
-	printf("%s", ft_strmapi(test, f));
-}*/

@@ -14,16 +14,17 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	max_size;
 	char	*new_string;
+	int		max_size;
+	size_t	i;
+	size_t	k;
 
+	i = 0;
+	k = 0;
 	max_size = ft_strlen(s1) + ft_strlen(s2);
 	new_string = (char *)malloc(sizeof(char) * max_size + 1);
 	if (!(new_string))
 		return (NULL);
-	size_t	i = 0;
-	size_t k = 0;
-
 	while (i < ft_strlen(s1))
 	{
 		new_string[i] = s1[i];
@@ -34,6 +35,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		new_string[i + k] = s2[k];
 		k++;
 	}
-	new_string[i + k] = '\0'; 
+	new_string[i + k] = '\0';
 	return (new_string);
 }
