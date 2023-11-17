@@ -12,30 +12,22 @@
 
 #include "libft.h"
 
-int	ft_strlen(const char *s)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	int	index;
-
-	index = 0;
-	while (s[index])
-		index++;
-	return (index);
-}
-
-char	*ft_strnstr(const char *big, const char *little, int len)
-{
-	int	index;
-	int	k;
+	size_t	index;
+	size_t	k;
 
 	index = 0;
 	if (ft_strlen(little) == 0)
 		return ((char *)big);
-	while (big[index] && index < len)
+	if (len == 0)
+		return (NULL);
+	while (big[index] && index < len - 1)
 	{
 		if (big[index] == little[0])
 		{
 			k = 0;
-			while (k < ft_strlen(big) - index)
+			while (k < ft_strlen(little) && (index + k < len - 1))
 			{
 				if (big[index + k] == little[k])
 					k++;
@@ -43,9 +35,19 @@ char	*ft_strnstr(const char *big, const char *little, int len)
 					break;
 			}
 			if (k == ft_strlen(little))
-				return ((char *)(big + index));
+				return ((char *)big+index);
 		}
 		index++;
 	}
-	return ("\0");
+	return (NULL);
 }
+/*
+int	main(int ac, char **av)
+{
+	if (ac == 3)
+	{
+		printf("(res mine) haystack = %s, needle = %s, result = %s\n", av[1], av[2], ft_strnstr(av[1], av[2], 10));
+		printf("(res lib) haystack = %s, needle = %s, result = %s\n", av[1], av[2], strnstr(av[1], av[2], 10));
+	}
+	return 0;
+}*/

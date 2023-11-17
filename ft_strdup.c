@@ -12,32 +12,27 @@
 
 #include "libft.h"
 
-int	ft_strlen(const char	*c)
+static char	*ft_strcpy(char *dst, const char *src)
 {
-	int	index;
+	size_t	index;
 
 	index = 0;
-	while (c[index])
+	while (src[index])
+	{
+		((unsigned char *)dst)[index] = ((unsigned char *)src)[index];
 		index++;
-	return (index);
+	}
+	dst[index] = '\0';
+	return (dst);
 }
 
 char	*ft_strdup(const char *s)
 {
 	char	*duplicate;
-	int	index;
 
-	index = 0;
-	duplicate = (char *)malloc(sizeof(char) * ft_strlen(s));
+	duplicate = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
 	if (!(duplicate))
-	{
-		duplicate = NULL;
-		return (duplicate);
-	}
-	while (index < ft_strlen(s))
-	{
-		duplicate[index] = s[index];
-		index++;
-	}
-	return (duplicate);
+		return (NULL);
+	duplicate = ft_strcpy(duplicate, s);
+	return ((char *)duplicate);
 }

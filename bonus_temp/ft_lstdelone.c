@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 15:54:37 by nraymond          #+#    #+#             */
-/*   Updated: 2023/11/06 15:55:47 by nraymond         ###   ########.fr       */
+/*   Created: 2023/11/14 19:09:39 by nraymond          #+#    #+#             */
+/*   Updated: 2023/11/14 19:16:05 by nraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
-int	ft_tolower(int c)
 {
-	int	to_ret;
+void *content;
+struct s_list *next;
+} t_list;
 
-	to_ret = c;
-	if (c >= 65 && c <= 90)
-		to_ret += 32;
-	return (to_ret);
+void ft_lstdelone(t_list *lst, void (*del)(void*))
+{
+	(*del)()
 }
+

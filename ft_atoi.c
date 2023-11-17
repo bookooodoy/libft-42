@@ -19,14 +19,7 @@ int	ft_isspace(char c)
 	return (0);
 }
 
-int	ft_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
-}
-
-int	atoi(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
 	int		index;
 	char	*test;
@@ -39,15 +32,26 @@ int	atoi(const char *nptr)
 	index = 0;
 	while (ft_isspace(test[index]))
 		index++;
-	if (test[index] == '-')
-		sign *= -1;
-	else if (test[index] != '+' && !(ft_isdigit(test[index])))
-		return (0);
+	if (test[index] == '-' || test[index] == '+')
+	{ 
+		if (test[index] == '-')
+			sign *= -1;
+		index++;
+	}
 	while (ft_isdigit(test[index]))
 	{
 		to_ret = (10 * to_ret) + (test[index] - '0');
 		if (!(ft_isdigit(test[index + 1])))
 			break ;
+		index++;
 	}
 	return (to_ret * sign);
 }
+
+/*
+int	main(void)
+{
+	const char *nptr = "-4886";
+	printf("%d", ft_atoi(nptr));
+	return 0;
+}*/

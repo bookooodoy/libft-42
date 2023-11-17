@@ -12,18 +12,17 @@
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char    *ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*to_ret;
-	size_t 	index;
+    char    *to_ret;
+    size_t     index;
 
-	index = 0;
-	to_ret = (char *)malloc(sizeof(char) * len);
-	while (index < len && len > 0)
-	{
-		to_ret[index] = s[start + index];
-		index++;
-	}
-	to_ret[index] = '\0';
-	return (to_ret);
+    index = 0;
+    to_ret = (char *)malloc(sizeof(char) * len + 1);
+    if (!(to_ret))
+        return (NULL);
+    while (index < len && (start < ft_strlen(s)))
+        to_ret[index++] = s[start++];
+    to_ret[index] = '\0';
+    return (to_ret);
 }

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	count_digit_length(int n)
+static int	count_digit_length(int n)
 {
 	int	length;
 
@@ -25,17 +25,7 @@ int	count_digit_length(int n)
 	return (length);
 }
 
-size_t	ft_strlen(const char *s)
-{
-	int	index;
-
-	index = 0;
-	while (s[index])
-		index++;
-	return (index);
-}
-
-char	*reverse_char(char *s, int size, int sign)
+static char	*reverse_char(char *s, int size, int sign)
 {
 	char	*reversed;
 	int		end;
@@ -47,10 +37,7 @@ char	*reverse_char(char *s, int size, int sign)
 	end = ft_strlen((const char *)s) - 2;
 	reversed = (char *)malloc(sizeof(char) * size + 2);
 	if (!(reversed))
-	{
-		reversed = NULL;
 		return (NULL);
-	}
 	if (sign)
 		reversed[k++] = '-';
 	while (index < size)

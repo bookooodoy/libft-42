@@ -21,23 +21,13 @@ int 	ft_memcmp(const void *s1, const void *s2, int n)
 	index = 0;
 	if (n <= 0)
 		return (0);
-	first = s1;
-	last = s2;
-	while ((first[index] && last[index]) && index < n)
+	first = (unsigned const char *)s1;
+	last = (unsigned const char *)s2;
+	while ((first[index] && last[index]) && index < n - 1)
 	{
 		if (first[index] != last[index])
 			return ((int )first[index] - last[index]);
 		index++;
 	}
 	return ((int)first[index] - last[index]);
-}
-
-#include <stdio.h>
-
-int	main(void)
-{
-	char	*s1 = "This is a test.";
-	int	s2[] = {1,2,3,5};
-	printf("%d\n", ft_memcmp((const void *)s1, (const void *)s2, 10));	
-	return (0);
 }

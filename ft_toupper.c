@@ -21,10 +21,3 @@ int	ft_toupper(int c)
 		to_ret -= 32;
 	return (to_ret);
 }
-
-#include <stdio.h>
-int	main(void)
-{
-	printf("%d", ft_toupper('q'));
-	return (0);
-}

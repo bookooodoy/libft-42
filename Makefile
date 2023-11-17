@@ -4,9 +4,10 @@ SRCS:= $(wildcard *.c)
 
 OBJ=$(SRCS:.c=.o)
 
-#SRCS_B := #...
+#SRCS_B := ...
 
 CC=cc
+
 
 CFLAGS=-Werror -Wextra -Wall -I .
 

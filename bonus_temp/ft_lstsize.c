@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 15:54:37 by nraymond          #+#    #+#             */
-/*   Updated: 2023/11/06 15:55:47 by nraymond         ###   ########.fr       */
+/*   Created: 2023/11/14 18:53:22 by nraymond          #+#    #+#             */
+/*   Updated: 2023/11/14 18:56:44 by nraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_tolower(int c)
+typedef struct s_list
 {
-	int	to_ret;
+void *content;
+struct s_list *next;
+} t_list;
 
-	to_ret = c;
-	if (c >= 65 && c <= 90)
-		to_ret += 32;
-	return (to_ret);
+int	ft_lstsize(t_list *lst)
+{
+	int	cpt;
+	t_list * current = lst;
+
+	cpt = 0;
+	while (current->next != NULL)
+	{
+		current = current->next;
+		cpt++;
+	}
+	return (cpt);
 }

@@ -27,42 +27,42 @@ int	is_trimset(char const c, char const *set)
 			
 }
 
-int	ft_strlen(char const *c)
+int	get_start(char const *s, char const *set)
 {
 	int	index;
 
 	index = 0;
-	while (c[index])
+	while (is_trimset(s[index], set))
 		index++;
 	return (index);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+int	get_end(char const *s, char const *set)
 {
 	int	index;
-	char	*new;
-	int	k;
+	size_t	end;
 
+	end = ft_strlen(s) - 1;
 	index = 0;
-	k = 0;
-	new = (char *)malloc(sizeof(char) * ft_strlen(s1) + 1);
-	while (s1[index])
-	{
-		if (!(is_trimset(s1[index], set)))
-		{
-			new[k] = s1[index];
-			k++;
-		}
+	while (is_trimset(s[end - index], set))
 		index++;
-	}
-	return ((char *)new);
+	return (end - index);
 }
 
-int	main(void)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*test = "fils de pute";
-	char	*set = " du";
-	char	*new = ft_strtrim(test, set);
-	printf("%s", new);
-	return 0;
+	char	*new;
+	int	k;
+	int	start;
+	int	end;
+
+	start = get_start(s1, set);
+	end = get_end(s1, set) + 1;
+	k = 0;
+	
+	new = (char *)malloc(sizeof(char) * (end - start) + 1);
+	while (start < end )
+		new[k++] = s1[start++];
+	new[k] = '\0';
+	return ((char *)new);
 }

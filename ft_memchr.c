@@ -27,10 +27,3 @@ void	*ft_memchr(const void *s, int c, int n)
 	}
 	return (void *)(0);
 }
-
-#include <stdio.h>
-int	main(void)
-{
-	printf("%s", (char *)ft_memchr((const void *)"test", 't', 1));
-	return (0);
-}
