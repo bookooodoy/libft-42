@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	is_trimset(char const c, char const *set)
+static int	is_trimset(char const c, char const *set)
 {
 	int	index;
 
@@ -26,7 +26,7 @@ int	is_trimset(char const c, char const *set)
 	return (0);
 }
 
-int	get_start(char const *s, char const *set)
+static int	get_start(char const *s, char const *set)
 {
 	int	index;
 
@@ -36,7 +36,7 @@ int	get_start(char const *s, char const *set)
 	return (index);
 }
 
-int	get_end(char const *s, char const *set)
+static int	get_end(char const *s, char const *set)
 {
 	int		index;
 	size_t	end;

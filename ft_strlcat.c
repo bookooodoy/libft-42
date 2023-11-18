@@ -34,16 +34,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	dst[size_d + index] = '\0';
 	return (size_d + size_s);
 }
-/*
-#include  <string.h>
-
-int	main(void)
-{
-	size_t size = 15;
-	const char *src = "ceci est la source";
-	char *dst = (char *)malloc(sizeof(char) * (ft_strlen(src) + size));
-	printf("%lu", ft_strlcat(dst, src, size));
-	printf("%d", strlcat(dst, src, size));
-	return (0);
-}
-*/
