@@ -39,18 +39,16 @@ INCL:= libft.h
 
 OBJ=$(SRCS:.c=.o)
 
-#SRCS_B := ...
-
 CC=cc
 
 CFLAGS=-Werror -Wextra -Wall -I .
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(INCL)
+$(NAME): $(OBJ) $(INCL) Makefile
 	ar -rcs $(NAME) $(OBJ)
 
-%.o: %.c
+%.o: %.c $(INCL) Makefile
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 clean:
@@ -61,4 +59,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean re fclean
+.PHONY: re fclean clean 
